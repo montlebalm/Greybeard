@@ -61,7 +61,7 @@ function! s:h(group, style)
     \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
 endfunction
 
-call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
+call s:h("Normal",        {"bg": "NONE", "fg": s:norm})
 
 " restore &background's value in case changing Normal changed &background (:help :hi-normal-cterm)
 if &background != s:background
@@ -127,15 +127,15 @@ call s:h("StatusLine",    {"bg": s:bg_very_subtle})
 call s:h("StatusLineNC",  {"bg": s:bg_very_subtle, "fg": s:medium_gray})
 call s:h("VertSplit",     {"bg": s:bg_very_subtle, "fg": s:bg_very_subtle})
 call s:h("Title",         {"fg": s:light_gray})
-call s:h("Visual",        {"fg": s:norm, "bg": s:bg_very_subtle})
+call s:h("Visual",        {"bg": s:yellow, "fg": s:norm})
 call s:h("VisualNOS",     {"bg": s:bg_subtle})
-call s:h("WarningMsg",    {"bg": s:yellow, "fg": s:black})
+call s:h("WarningMsg",    {"bg": s:yellow, "fg": s:norm})
 call s:h("WildMenu",      {"fg": s:bg, "bg": s:norm})
 call s:h("Folded",        {"fg": s:medium_gray})
 call s:h("FoldColumn",    {"fg": s:bg_subtle})
 call s:h("DiffAdd",       {"fg": s:black})
 call s:h("DiffDelete",    {"fg": s:red})
-call s:h("DiffChange",    {"bg": s:yellow, "fg": s:black})
+call s:h("DiffChange",    {"bg": s:yellow, "fg": s:norm})
 call s:h("DiffText",      {"fg": s:black})
 call s:h("SignColumn",    {"fg": s:black})
 
