@@ -250,4 +250,4 @@ hi link @variable.builtin.tsx Variable
 " Strings
 "   foo('bar')
 "        ^^^
-call s:h("@string.tsx ", { "fg": s:medium_gray})
+call s:h("@string.tsx ", { "fg": s:light_gray})
