@@ -25,7 +25,7 @@ let s:lighter_gray    = {"gui": "#CCCCCC", "cterm": "252"}
 let s:lightest_gray   = {"gui": "#E5E5E5", "cterm": "254"}
 let s:yellow          = {"gui": "#FED442", "cterm": "221"}
 let s:pink            = {"gui": "#D73A49", "cterm": "167"}
-let s:red             = {"gui": "#B31D28", "cterm": "124"}
+" let s:red             = {"gui": "#B31D28", "cterm": "124"}
 " let s:blue            = {"gui": "#005CC5", "cterm": "26" }
 " let s:green           = {"gui": "#22863A", "cterm": "29" }
 
@@ -110,19 +110,19 @@ hi! link Debug            Special
 
 call s:h("Underlined",    {"fg": s:norm, "gui": "underline", "cterm": "underline"})
 call s:h("Ignore",        {"fg": s:bg})
-call s:h("Error",         {"fg": s:white, "bg": s:red})
+call s:h("Error",         {"fg": s:white, "bg": s:black})
 call s:h("Todo",          {"fg": s:pink, "gui": "underline", "cterm": "underline"})
 call s:h("SpecialKey",    {"fg": s:black})
 call s:h("NonText",       {"fg": s:medium_gray})
 call s:h("Directory",     {"fg": s:norm})
-call s:h("ErrorMsg",      {"fg": s:red})
+call s:h("ErrorMsg",      {"fg": s:black})
 call s:h("IncSearch",     {"bg": s:norm_subtle, "fg": s:bg})
 call s:h("Search",        {"bg": s:norm, "fg": s:bg})
 call s:h("MoreMsg",       {"fg": s:medium_gray})
 hi! link ModeMsg MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
 call s:h("CursorLineNr",  {"fg": s:cursorlinenr, "bg": s:bg_very_subtle})
-call s:h("Question",      {"fg": s:red})
+call s:h("Question",      {"fg": s:black})
 call s:h("StatusLine",    {"bg": s:bg_very_subtle})
 call s:h("StatusLineNC",  {"bg": s:bg_very_subtle, "fg": s:medium_gray})
 call s:h("VertSplit",     {"bg": s:bg_very_subtle, "fg": s:bg_very_subtle})
@@ -134,18 +134,18 @@ call s:h("WildMenu",      {"fg": s:bg, "bg": s:norm})
 call s:h("Folded",        {"fg": s:medium_gray})
 call s:h("FoldColumn",    {"fg": s:bg_subtle})
 call s:h("DiffAdd",       {"fg": s:black})
-call s:h("DiffDelete",    {"fg": s:red})
+call s:h("DiffDelete",    {"fg": s:medium_gray})
 call s:h("DiffChange",    {"bg": s:yellow, "fg": s:norm})
 call s:h("DiffText",      {"fg": s:black})
 call s:h("SignColumn",    {"fg": s:black})
 
 if has("gui_running")
-  call s:h("SpellBad",    {"gui": "underline", "sp": s:red})
+  call s:h("SpellBad",    {"gui": "underline", "sp": s:medium_gray})
   call s:h("SpellCap",    {"gui": "underline", "sp": s:black})
   call s:h("SpellRare",   {"gui": "underline", "sp": s:medium_gray})
   call s:h("SpellLocal",  {"gui": "underline", "sp": s:black})
 else
-  call s:h("SpellBad",    {"cterm": "underline", "fg": s:red})
+  call s:h("SpellBad",    {"cterm": "underline", "fg": s:medium_gray})
   call s:h("SpellCap",    {"cterm": "underline", "fg": s:black})
   call s:h("SpellRare",   {"cterm": "underline", "fg": s:medium_gray})
   call s:h("SpellLocal",  {"cterm": "underline", "fg": s:black})
@@ -223,3 +223,31 @@ call s:h("markdownOrderedListMarker", { "fg": s:fg })
 call s:h("mkdLink", { "fg": s:fg})
 call s:h("markdownLinkDelimiter", { "fg": s:fg })
 call s:h("mkdURL", { "fg": s:norm_subtle})
+
+"
+" Treesitter
+"
+
+" Functions
+"   const foo = useMemo(...)
+"               ^^^^^^^
+"   obj.method()
+"       ^^^^^^
+hi link @lsp.type.function.typescriptreact Special
+hi link @function.method.call.tsx Special
+
+" TSX tags
+"   <div />
+"    ^^^
+hi link @tag.tsx Identifier
+hi link @tag.builtin.tsx Identifier
+
+" Built-in
+"   window.addEventListener(...)
+"   ^^^^^^
+hi link @variable.builtin.tsx Variable
+
+" Strings
+"   foo('bar')
+"        ^^^
+call s:h("@string.tsx ", { "fg": s:norm_subtle})
