@@ -24,7 +24,7 @@ let s:light_gray      = {"gui": "#999999", "cterm": "246"}
 let s:lighter_gray    = {"gui": "#CCCCCC", "cterm": "252"}
 let s:lightest_gray   = {"gui": "#E5E5E5", "cterm": "254"}
 let s:yellow          = {"gui": "#FED442", "cterm": "221"}
-let s:pink            = {"gui": "#D73A49", "cterm": "167"}
+" let s:pink            = {"gui": "#D73A49", "cterm": "167"}
 " let s:red             = {"gui": "#B31D28", "cterm": "124"}
 " let s:blue            = {"gui": "#005CC5", "cterm": "26" }
 " let s:green           = {"gui": "#22863A", "cterm": "29" }
@@ -111,7 +111,7 @@ hi! link Debug            Special
 call s:h("Underlined",    {"fg": s:norm, "gui": "underline", "cterm": "underline"})
 call s:h("Ignore",        {"fg": s:bg})
 call s:h("Error",         {"fg": s:white, "bg": s:black})
-call s:h("Todo",          {"fg": s:pink, "gui": "underline", "cterm": "underline"})
+call s:h("Todo",          {"fg": s:black, "gui": "underline", "cterm": "underline"})
 call s:h("SpecialKey",    {"fg": s:black})
 call s:h("NonText",       {"fg": s:medium_gray})
 call s:h("Directory",     {"fg": s:norm})
@@ -152,11 +152,11 @@ else
 endif
 
 call s:h("Pmenu",         {"fg": s:norm, "bg": s:bg_very_subtle})
-call s:h("PmenuSel",      {"fg": s:subtle_black, "bg": s:pink})
+call s:h("PmenuSel",      {"fg": s:subtle_black, "bg": s:black})
 call s:h("PmenuSbar",     {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("PmenuThumb",    {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("TabLine",       {"fg": s:norm, "bg": s:bg_very_subtle})
-call s:h("TabLineSel",    {"fg": s:subtle_black, "bg": s:pink})
+call s:h("TabLineSel",    {"fg": s:subtle_black, "bg": s:black})
 call s:h("TabLineFill",   {"fg": s:norm, "bg": s:bg_very_subtle})
 call s:h("CursorColumn",  {"bg": s:bg_very_subtle})
 call s:h("CursorLine",    {"bg": s:bg_very_subtle})
@@ -173,7 +173,7 @@ call s:h("htmlH5",        {"bg": s:bg, "fg": s:norm})
 call s:h("htmlH6",        {"bg": s:bg, "fg": s:norm})
 
 " which-key.nvim
-call s:h("WhichKey",                {"bg": s:bg, "fg": s:pink})
+call s:h("WhichKey",                {"bg": s:bg, "fg": s:black})
 call s:h("WhichKeyDesc",            {"bg": s:bg, "fg": s:norm_subtle})
 call s:h("WhichKeySeparator",       {"bg": s:bg, "fg": s:norm})
 call s:h("WhichKeyFloat",           {"bg": s:bg})
@@ -250,4 +250,4 @@ hi link @variable.builtin.tsx Variable
 " Strings
 "   foo('bar')
 "        ^^^
-call s:h("@string.tsx ", { "fg": s:norm_subtle})
+call s:h("@string.tsx ", { "fg": s:medium_gray})
