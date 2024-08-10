@@ -37,7 +37,7 @@ if &background == "dark"
   let s:bg_subtle       = s:lighter_black
   let s:bg_very_subtle  = s:subtle_black
   let s:norm            = s:lighter_gray
-  let s:norm_subtle     = s:medium_gray
+  let s:norm_subtle     = s:light_gray
   let s:cursorlinenr    = s:white
 else
   let s:fg              = s:black
@@ -68,7 +68,7 @@ if &background != s:background
    execute "set background=" . s:background
 endif
 
-call s:h("Cursor",        {"bg": s:light_black, "fg": s:norm })
+call s:h("Cursor",        {"bg": s:fg, "fg": s:bg })
 call s:h("Comment",       {"fg": s:bg_subtle})
 
 call s:h("Constant",      {"fg": s:norm_subtle})
@@ -96,7 +96,7 @@ hi! link Define           PreProc
 hi! link Macro            PreProc
 hi! link PreCondit        PreProc
 
-call s:h("Type",          {"fg": s:norm})
+hi! link Type             Special
 hi! link StorageClass     Type
 hi! link Structure        Type
 hi! link Typedef          Type
@@ -127,17 +127,18 @@ call s:h("StatusLine",    {"bg": s:bg_very_subtle})
 call s:h("StatusLineNC",  {"bg": s:bg_very_subtle, "fg": s:medium_gray})
 call s:h("VertSplit",     {"bg": s:bg_very_subtle, "fg": s:bg_very_subtle})
 call s:h("Title",         {"fg": s:light_gray})
-call s:h("Visual",        {"bg": s:yellow, "fg": s:norm})
-call s:h("VisualNOS",     {"bg": s:bg_subtle})
-call s:h("WarningMsg",    {"bg": s:yellow, "fg": s:norm})
+call s:h("Visual",        {"bg": s:yellow, "fg": s:black})
+call s:h("VisualNOS",     {"bg": s:bg_very_subtle})
+hi! link WarningMsg       Visual
 call s:h("WildMenu",      {"fg": s:bg, "bg": s:norm})
 call s:h("Folded",        {"fg": s:medium_gray})
 call s:h("FoldColumn",    {"fg": s:bg_subtle})
 call s:h("DiffAdd",       {"fg": s:black})
 call s:h("DiffDelete",    {"fg": s:medium_gray})
-call s:h("DiffChange",    {"bg": s:yellow, "fg": s:norm})
+hi! link DiffChange       Visual
 call s:h("DiffText",      {"fg": s:black})
 call s:h("SignColumn",    {"fg": s:black})
+call s:h("WinSeparator",  {"fg": s:lighter_gray})
 
 if has("gui_running")
   call s:h("SpellBad",    {"gui": "underline", "sp": s:medium_gray})
@@ -151,8 +152,8 @@ else
   call s:h("SpellLocal",  {"cterm": "underline", "fg": s:black})
 endif
 
-call s:h("Pmenu",         {"fg": s:norm, "bg": s:bg_very_subtle})
-call s:h("PmenuSel",      {"fg": s:subtle_black, "bg": s:black})
+call s:h("Pmenu",         {"fg": s:norm, "bg": s:bg})
+call s:h("PmenuSel",      {"fg": s:bg, "bg": s:norm})
 call s:h("PmenuSbar",     {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("PmenuThumb",    {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("TabLine",       {"fg": s:norm, "bg": s:bg_very_subtle})
@@ -161,6 +162,12 @@ call s:h("TabLineFill",   {"fg": s:norm, "bg": s:bg_very_subtle})
 call s:h("CursorColumn",  {"bg": s:bg_very_subtle})
 call s:h("CursorLine",    {"bg": s:bg_very_subtle})
 call s:h("ColorColumn",   {"bg": s:bg_subtle})
+call s:h("NormalFloat",   {"fg": s:norm, "bg": s:bg})
+
+call s:h("DiagnosticFloatingInfo", { "fg": s:norm})
+hi! link DiagnosticFloatingError    DiagnosticFloatingInfo
+hi! link DiagnosticFloatingWarn     DiagnosticFloatingInfo
+hi! link DiagnosticFloatingHint     DiagnosticFloatingInfo
 
 call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
 call s:h("qfLineNr",      {"fg": s:medium_gray})
@@ -173,29 +180,28 @@ call s:h("htmlH5",        {"bg": s:bg, "fg": s:norm})
 call s:h("htmlH6",        {"bg": s:bg, "fg": s:norm})
 
 " which-key.nvim
-call s:h("WhichKey",                {"bg": s:bg, "fg": s:black})
-call s:h("WhichKeyDesc",            {"bg": s:bg, "fg": s:norm_subtle})
+call s:h("WhichKey",                {"bg": s:bg, "fg": s:norm})
+call s:h("WhichKeyDesc",            {"bg": s:bg, "fg": s:norm})
 call s:h("WhichKeySeparator",       {"bg": s:bg, "fg": s:norm})
 call s:h("WhichKeyFloat",           {"bg": s:bg})
-
-hi link WhichKeyGroup WhichKey
+hi! link WhichKeyGroup WhichKey
 
 " Neomake
-hi link NeomakeWarningSign	SyntasticWarningSign
-hi link NeomakeErrorSign	SyntasticErrorSign
+hi! link NeomakeWarningSign	SyntasticWarningSign
+hi! link NeomakeErrorSign	SyntasticErrorSign
 
 " ALE
-hi link ALEWarningSign	SyntasticWarningSign
-hi link ALEErrorSign	SyntasticErrorSign
+hi! link ALEWarningSign	SyntasticWarningSign
+hi! link ALEErrorSign	SyntasticErrorSign
 
 " Signify, git-gutter
-hi link SignifySignAdd              LineNr
-hi link SignifySignDelete           LineNr
-hi link SignifySignChange           LineNr
-hi link GitGutterAdd                LineNr
-hi link GitGutterDelete             LineNr
-hi link GitGutterChange             LineNr
-hi link GitGutterChangeDelete       LineNr
+hi! link SignifySignAdd              LineNr
+hi! link SignifySignDelete           LineNr
+hi! link SignifySignChange           LineNr
+hi! link GitGutterAdd                LineNr
+hi! link GitGutterDelete             LineNr
+hi! link GitGutterChange             LineNr
+hi! link GitGutterChangeDelete       LineNr
 
 " Markdown
 call s:h("markdownCode", { "fg": s:bg_subtle })
@@ -225,6 +231,12 @@ call s:h("markdownLinkDelimiter", { "fg": s:fg })
 call s:h("mkdURL", { "fg": s:norm_subtle})
 
 "
+" vim-startify
+"
+
+call s:h("StartifyHeader", { "fg": s:norm})
+
+"
 " Treesitter
 "
 
@@ -233,21 +245,21 @@ call s:h("mkdURL", { "fg": s:norm_subtle})
 "               ^^^^^^^
 "   obj.method()
 "       ^^^^^^
-hi link @lsp.type.function.typescriptreact Special
-hi link @function.method.call.tsx Special
+hi! link @lsp.type.function.typescriptreact Special
+hi! link @function.method.call.tsx Special
 
 " TSX tags
 "   <div />
 "    ^^^
-hi link @tag.tsx Identifier
-hi link @tag.builtin.tsx Identifier
+hi! link @tag.tsx Identifier
+hi! link @tag.builtin.tsx Identifier
 
 " Built-in
 "   window.addEventListener(...)
 "   ^^^^^^
-hi link @variable.builtin.tsx Variable
+hi! link @variable.builtin.tsx Variable
 
 " Strings
 "   foo('bar')
 "        ^^^
-call s:h("@string.tsx ", { "fg": s:light_gray})
+call s:h("@string.tsx ", { "fg": s:medium_gray})
