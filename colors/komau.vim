@@ -138,7 +138,7 @@ call s:h("DiffDelete",    {"fg": s:medium_gray})
 hi! link DiffChange       Visual
 call s:h("DiffText",      {"fg": s:black})
 call s:h("SignColumn",    {"fg": s:black})
-call s:h("WinSeparator",  {"fg": s:lighter_gray})
+call s:h("WinSeparator",  {"bg": s:bg_very_subtle, "fg": s:bg_very_subtle})
 
 if has("gui_running")
   call s:h("SpellBad",    {"gui": "underline", "sp": s:medium_gray})
