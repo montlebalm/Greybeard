@@ -203,6 +203,9 @@ hi! link GitGutterDelete             LineNr
 hi! link GitGutterChange             LineNr
 hi! link GitGutterChangeDelete       LineNr
 
+" Git diff
+call s:h("Added", { "bg": s:yellow, "fg": s:black })
+
 " Markdown
 call s:h("markdownCode", { "fg": s:bg_subtle })
 call s:h("markdownLinkReference", { "fg": s:bg_subtle })
