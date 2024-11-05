@@ -14,20 +14,12 @@ endif
 
 let g:colors_name='komau'
 
-let s:black           = {"gui": "#222222", "cterm": "235"}
-let s:medium_gray     = {"gui": "#767676", "cterm": "243"}
-let s:white           = {"gui": "#F5EEE6", "cterm": "255"}
-let s:light_black     = {"gui": "#424242", "cterm": "238"}
-let s:lighter_black   = {"gui": "#545454", "cterm": "240"}
-let s:subtle_black    = {"gui": "#303030", "cterm": "236"}
-let s:light_gray      = {"gui": "#999999", "cterm": "246"}
-let s:lighter_gray    = {"gui": "#CCCCCC", "cterm": "252"}
-let s:lightest_gray   = {"gui": "#E5E5E5", "cterm": "254"}
-let s:yellow          = {"gui": "#FED442", "cterm": "221"}
-" let s:pink            = {"gui": "#D73A49", "cterm": "167"}
-" let s:red             = {"gui": "#B31D28", "cterm": "124"}
-" let s:blue            = {"gui": "#005CC5", "cterm": "26" }
-" let s:green           = {"gui": "#22863A", "cterm": "29" }
+let s:black           = {"gui": "#333333", "cterm": "0"}
+let s:light_gray      = {"gui": "#BBBBBB", "cterm": "3"}
+let s:medium_gray     = {"gui": "#777777", "cterm": "1"}
+let s:white           = {"gui": "#EEEEEE", "cterm": "15"}
+let s:lighter_black   = {"gui": "#555555", "cterm": "14"}
+let s:yellow          = {"gui": "#F9D972", "cterm": "13"}
 
 let s:background = &background
 
@@ -35,16 +27,16 @@ if &background == "dark"
   let s:fg              = s:white
   let s:bg              = s:black
   let s:bg_subtle       = s:lighter_black
-  let s:bg_very_subtle  = s:subtle_black
-  let s:norm            = s:lighter_gray
-  let s:norm_subtle     = s:light_gray
+  let s:bg_very_subtle  = s:black
+  let s:norm            = s:white
+  let s:norm_subtle     = s:medium_gray
   let s:cursorlinenr    = s:white
 else
   let s:fg              = s:black
   let s:bg              = s:white
-  let s:bg_subtle       = s:light_gray
-  let s:bg_very_subtle  = s:lightest_gray
-  let s:norm            = s:light_black
+  let s:bg_subtle       = s:medium_gray
+  let s:bg_very_subtle  = s:white
+  let s:norm            = s:black
   let s:norm_subtle     = s:medium_gray
   let s:cursorlinenr    = s:black
 endif
@@ -58,6 +50,7 @@ function! s:h(group, style)
     \ "gui="     (has_key(a:style, "gui")   ? a:style.gui      : "NONE")
     \ "ctermfg=" (has_key(a:style, "fg")    ? a:style.fg.cterm : "NONE")
     \ "ctermbg=" (has_key(a:style, "bg")    ? a:style.bg.cterm : "NONE")
+    \ "cterm="   (has_key(a:style, "bold")  ? a:style.cterm    : "NONE")
     \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
 endfunction
 
@@ -69,7 +62,13 @@ if &background != s:background
 endif
 
 call s:h("Cursor",        {"bg": s:fg, "fg": s:bg })
-call s:h("Comment",       {"fg": s:bg_subtle})
+call s:h("Comment",       {"fg": s:light_gray})
+
+" TSX tags
+"   <div />
+"    ^^^
+call s:h("@tag.tsx",          {"fg": s:fg, "cterm": "bold"})
+hi! link @tag.builtin.tsx     @tag.tsx
 
 call s:h("Constant",      {"fg": s:norm_subtle})
 hi! link Character        Constant
@@ -126,7 +125,7 @@ call s:h("Question",      {"fg": s:black})
 call s:h("StatusLine",    {"bg": s:bg_very_subtle, "fg": s:black})
 call s:h("StatusLineNC",  {"bg": s:bg_very_subtle, "fg": s:medium_gray})
 call s:h("VertSplit",     {"bg": s:bg_very_subtle, "fg": s:bg_very_subtle})
-call s:h("Title",         {"fg": s:light_gray})
+call s:h("Title",         {"fg": s:medium_gray})
 call s:h("Visual",        {"bg": s:yellow, "fg": s:black})
 call s:h("VisualNOS",     {"bg": s:bg_very_subtle})
 hi! link WarningMsg       Visual
@@ -157,7 +156,7 @@ call s:h("PmenuSel",      {"fg": s:bg, "bg": s:norm})
 call s:h("PmenuSbar",     {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("PmenuThumb",    {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("TabLine",       {"fg": s:norm, "bg": s:bg_very_subtle})
-call s:h("TabLineSel",    {"fg": s:subtle_black, "bg": s:black})
+call s:h("TabLineSel",    {"fg": s:black, "bg": s:black})
 call s:h("TabLineFill",   {"fg": s:norm, "bg": s:bg_very_subtle})
 call s:h("CursorColumn",  {"bg": s:bg_very_subtle})
 call s:h("CursorLine",    {"bg": s:bg_very_subtle})
@@ -222,9 +221,9 @@ call s:h("htmlH4", { "fg": s:fg})
 call s:h("htmlH5", { "fg": s:fg})
 call s:h("htmlH6", { "fg": s:fg})
 call s:h("mkdDelimiter", { "fg": s:fg })
-call s:h("markdownId", { "fg": s:light_gray })
+call s:h("markdownId", { "fg": s:medium_gray })
 call s:h("markdownBlockquote", { "fg": s:bg_subtle })
-call s:h("markdownItalic", { "fg": s:light_gray})
+call s:h("markdownItalic", { "fg": s:medium_gray})
 call s:h("mkdBold", { "fg": s:fg})
 call s:h("mkdInlineURL", { "fg": s:fg})
 call s:h("mkdListItem", { "fg": s:fg })
@@ -248,14 +247,8 @@ call s:h("StartifyHeader", { "fg": s:norm})
 "               ^^^^^^^
 "   obj.method()
 "       ^^^^^^
-hi! link @lsp.type.function.typescriptreact Special
-hi! link @function.method.call.tsx Special
-
-" TSX tags
-"   <div />
-"    ^^^
-hi! link @tag.tsx Identifier
-hi! link @tag.builtin.tsx Identifier
+hi! link @lsp.type.function.typescriptreact Variable
+hi! link @function.method.call.tsx Variable
 
 " Built-in
 "   window.addEventListener(...)
