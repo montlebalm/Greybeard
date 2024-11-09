@@ -115,8 +115,9 @@ call s:h("SpecialKey",    {"fg": s:black})
 call s:h("NonText",       {"fg": s:medium_gray})
 call s:h("Directory",     {"fg": s:norm})
 call s:h("ErrorMsg",      {"fg": s:black})
-call s:h("IncSearch",     {"bg": s:norm_subtle, "fg": s:bg})
-call s:h("Search",        {"bg": s:norm, "fg": s:bg})
+call s:h("IncSearch",     {"bg": s:black, "fg": s:bg})
+hi! link CurSearch IncSearch
+call s:h("Search",        {"bg": s:bg_very_subtle, "fg": s:norm})
 call s:h("MoreMsg",       {"fg": s:medium_gray})
 hi! link ModeMsg MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
