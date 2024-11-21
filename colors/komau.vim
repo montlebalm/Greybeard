@@ -169,7 +169,7 @@ hi! link DiagnosticFloatingError    DiagnosticFloatingInfo
 hi! link DiagnosticFloatingWarn     DiagnosticFloatingInfo
 hi! link DiagnosticFloatingHint     DiagnosticFloatingInfo
 
-call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
+call s:h("MatchParen",    {"bg": s:bg_very_subtle, "fg": s:norm})
 call s:h("qfLineNr",      {"fg": s:medium_gray})
 
 call s:h("htmlH1",        {"bg": s:bg, "fg": s:norm})
