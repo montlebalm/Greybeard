@@ -1,6 +1,6 @@
-" Name:       komau.vim
+" Name:       Greybeard
 " Version:    0.1.0
-" Maintainer: github.com/ntk148v
+" Maintainer: github.com/montlebalm
 " License:    Apache 2
 "
 " A minimal colorscheme for Vim/Neovim.
@@ -12,7 +12,7 @@ if exists('syntax on')
     syntax reset
 endif
 
-let g:colors_name='komau'
+let g:colors_name='greybeard'
 
 let s:black           = {"gui": "#333333", "cterm": "0"}
 let s:light_gray      = {"gui": "#BBBBBB", "cterm": "3"}
