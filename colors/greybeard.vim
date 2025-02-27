@@ -18,6 +18,7 @@ let s:black           = {"gui": "#333333", "cterm": "0"}
 let s:light_gray      = {"gui": "#BBBBBB", "cterm": "3"}
 let s:medium_gray     = {"gui": "#777777", "cterm": "1"}
 let s:white           = {"gui": "#EEEEEE", "cterm": "15"}
+let s:dark_black      = {"gui": "#111111", "cterm": "10"}
 let s:lighter_black   = {"gui": "#555555", "cterm": "14"}
 let s:yellow          = {"gui": "#F9D972", "cterm": "13"}
 
@@ -25,11 +26,11 @@ let s:background = &background
 
 if &background == "dark"
   let s:fg              = s:white
-  let s:bg              = s:black
+  let s:bg              = s:dark_black
   let s:bg_subtle       = s:lighter_black
   let s:bg_very_subtle  = s:black
   let s:norm            = s:white
-  let s:norm_subtle     = s:medium_gray
+  let s:norm_subtle     = s:light_gray
   let s:cursorlinenr    = s:white
 else
   let s:fg              = s:black
@@ -54,7 +55,7 @@ function! s:h(group, style)
     \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
 endfunction
 
-call s:h("Normal",        {"fg": s:norm})
+call s:h("Normal",        {"bg": s:bg, "fg": s:fg})
 
 " restore &background's value in case changing Normal changed &background (:help :hi-normal-cterm)
 if &background != s:background
@@ -115,7 +116,7 @@ call s:h("SpecialKey",    {"fg": s:black})
 call s:h("NonText",       {"fg": s:medium_gray})
 call s:h("Directory",     {"fg": s:norm})
 call s:h("ErrorMsg",      {"fg": s:black})
-call s:h("IncSearch",     {"bg": s:black, "fg": s:bg})
+call s:h("IncSearch",     {"bg": s:norm, "fg": s:bg})
 hi! link CurSearch IncSearch
 call s:h("Search",        {"bg": s:bg_very_subtle, "fg": s:norm})
 call s:h("MoreMsg",       {"fg": s:medium_gray})
