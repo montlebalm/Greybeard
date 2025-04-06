@@ -262,3 +262,5 @@ hi! link @variable.builtin.tsx Variable
 "   foo('bar')
 "        ^^^
 call s:h("@string.tsx ", { "fg": s:medium_gray})
+
+call s:h("FidgetWindow", { "bg": s:yellow, "fg": s:norm})
